@@ -1,0 +1,17 @@
+services:
+  postgresql:
+    image: postgres:latest  # PostgreSQL 버전설정
+    container_name: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}          # 데이터베이스 사용자 이름
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}  # 데이터베이스 사용자 비밀번호
+      # POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"  # 호스트와 컨테이너 간의 포트 매핑
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data  # 데이터 지속화를 위한 볼륨 마운트
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  postgres_data:
+    driver: local

@@ -1,0 +1,8 @@
+services:
+  item_master_manager:
+    container_name: item_master_manager
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - environments/.env.docker
